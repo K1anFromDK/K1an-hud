@@ -12,8 +12,10 @@
         const data = event.data;
         if (data.type === 'show') {
             $('#hud-container').fadeIn()
-            if (data.gender == 1) {
-            $('#health-fill').css('transition', 'height 0.5s').css('height', `${data.health-100}%`)
+            if (data.gender === 1) {
+                $('#health-fill').css('transition', 'height 0.5s').css('height', `${data.health-100}%`)
+            } else if (!data.gender) {
+                $('#health-fill').css('transition', 'height 0.5s').css('height', `${data.health}%`)
             }
             $('#armor-fill').css('transition', 'height 0.5s').css('height', `${data.armor}%`)
             $('#food-fill').css('transition', 'height 0.5s').css('height', `${data.hunger}%`)
