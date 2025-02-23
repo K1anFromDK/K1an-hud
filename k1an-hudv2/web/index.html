@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>k1an-hud</title>
+</head>
+
+<script>
+    window.addEventListener('message', function (event) {
+        const data = event.data;
+        if (data.type === 'show') {
+            $('#hud-container').fadeIn()
+            if (data.gender == 1) {
+            $('#health-fill').css('transition', 'height 0.5s').css('height', `${data.health-100}%`)
+            }
+            $('#armor-fill').css('transition', 'height 0.5s').css('height', `${data.armor}%`)
+            $('#food-fill').css('transition', 'height 0.5s').css('height', `${data.hunger}%`)
+            $('#thirst-fill').css('transition', 'height 0.5s').css('height', `${data.thirst}%`)
+        } else if (data.type === 'hide') {
+            $('#hud-container').fadeOut()
+        }
+    });
+</script>
+
+<body>
+
+    <div id="hud-container" style="display: none;"
+        class="status-container fixed bottom-0 left-0 flex justify-start w-full p-4">
+        <div class="health-bar bg-slate-950 border-4 border-slate-950 w-16 h-16 rounded-md relative flex items-center justify-center">
+            <i class="fas fa-heart text-white text-4xl relative z-10"></i>
+            <div id="health-fill" class="health-fill bg-emerald-600 w-full absolute rounded-md bottom-0" style="transform: rotate(180deg);"></div>
+        </div>
+        <div class="armor-bar bg-slate-950 border-4 border-slate-950 w-16 h-16 rounded-md relative flex items-center justify-center ml-4">
+            <i class="fas fa-shield text-white text-4xl relative z-10"></i>
+            <div id="armor-fill" class="armor-fill bg-blue-600 w-full absolute rounded-md bottom-0" style="transform: rotate(180deg);"></div>
+        </div>
+        <div class="food-bar bg-slate-950 border-4 border-slate-950 w-16 h-16 rounded-md relative flex items-center justify-center ml-4">
+            <i class="fas fa-burger text-white text-4xl relative z-10"></i>
+            <div id="food-fill" class="food-fill bg-amber-600 w-full absolute rounded-md bottom-0" style="transform: rotate(180deg);"></div>
+        </div>
+        <div class="thirst-bar bg-slate-950 border-4 border-slate-950 w-16 h-16 rounded-md relative flex items-center justify-center ml-4">
+            <i class="fa-solid fa-bottle-water text-white text-4xl relative z-10"></i>
+            <div id="thirst-fill" class="thirst-fill bg-sky-600 w-full absolute rounded-md bottom-0" style="transform: rotate(180deg);"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
